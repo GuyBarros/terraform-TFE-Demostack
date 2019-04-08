@@ -62,7 +62,8 @@ EOH
 
 variable "owner" {
   description = "IAM user responsible for lifecycle of cloud resources used for training"
-}
+  default     = ""
+  }
 
 variable "created-by" {
   description = "Tag used to identify resources created programmatically by Terraform"
@@ -101,6 +102,7 @@ variable "demo_password" {
 
 variable "public_key" {
   description = "The contents of the SSH public key to use for connecting to the cluster."
+  default     = ""
 }
 
 variable "instance_type_server" {

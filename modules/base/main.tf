@@ -7,7 +7,7 @@ resource "tfe_variable" "owner" {
   value        = ""
   category     = "terraform"
   sensitive    = false
-  workspace_id = "${tfe_workspace.demostack.id}"
+  workspace_id ="${var.workspace_id}"
 }
 
 resource "tfe_variable" "Ttl" {
@@ -15,7 +15,7 @@ resource "tfe_variable" "Ttl" {
   value        = "13"
   category     = "terraform"
   sensitive    = false
-  workspace_id = "${tfe_workspace.demostack.id}"
+  workspace_id ="${var.workspace_id}"
 }
 
 resource "tfe_variable" "demo_username" {
@@ -23,7 +23,7 @@ resource "tfe_variable" "demo_username" {
   value        = "demo"
   category     = "terraform"
   sensitive    = false
-  workspace_id = "${tfe_workspace.demostack.id}"
+  workspace_id ="${var.workspace_id}"
 }
 
 resource "tfe_variable" "demo_password" {
@@ -31,7 +31,7 @@ resource "tfe_variable" "demo_password" {
   value        = "demo"
   category     = "terraform"
   sensitive    = false
-  workspace_id = "${tfe_workspace.demostack.id}"
+  workspace_id ="${var.workspace_id}"
 }
 
 resource "tfe_variable" "consullicense" {
@@ -39,7 +39,7 @@ resource "tfe_variable" "consullicense" {
   value        = ""
   category     = "terraform"
   sensitive    = false
-  workspace_id = "${tfe_workspace.demostack.id}"
+  workspace_id ="${var.workspace_id}"
 }
 
 resource "tfe_variable" "vaultlicense" {
@@ -47,7 +47,7 @@ resource "tfe_variable" "vaultlicense" {
   value        = ""
   category     = "terraform"
   sensitive    = false
-  workspace_id = "${tfe_workspace.demostack.id}"
+  workspace_id ="${var.workspace_id}"
 }
 
 resource "tfe_variable" "enterprise" {
@@ -55,7 +55,7 @@ resource "tfe_variable" "enterprise" {
   value        = "1"
   category     = "terraform"
   sensitive    = false
-  workspace_id = "${tfe_workspace.demostack.id}"
+  workspace_id ="${var.workspace_id}"
 }
 
 resource "tfe_variable" "run_nomad_jobs" {
@@ -63,7 +63,7 @@ resource "tfe_variable" "run_nomad_jobs" {
   value        = "1"
   category     = "terraform"
   sensitive    = false
-  workspace_id = "${tfe_workspace.demostack.id}"
+  workspace_id ="${var.workspace_id}"
 }
 
 resource "tfe_variable" "servers" {
@@ -71,28 +71,21 @@ resource "tfe_variable" "servers" {
   value        = "3"
   category     = "terraform"
   sensitive    = false
-  workspace_id = "${tfe_workspace.demostack.id}"
+  workspace_id ="${var.workspace_id}"
 }
 
 resource "tfe_variable" "workers" {
-  key          = "servers"
+  key          = "workers"
   value        = "3"
   category     = "terraform"
   sensitive    = false
-  workspace_id = "${tfe_workspace.demostack.id}"
+  workspace_id ="${var.workspace_id}"
 }
 
 
 
 
 
-resource "tfe_variable" "public_key" {
-  key          = "public_key"
-  value        = ""
-  category     = "terraform"
-  sensitive    = false
-  workspace_id = "${tfe_workspace.demostack.id}"
-}
 
 
 
@@ -104,6 +97,6 @@ resource "tfe_variable" "public_key" {
   value        =  1
   category     = "env"
   sensitive    = false
-  workspace_id = "${tfe_workspace.demostack.id}"
+  workspace_id ="${var.workspace_id}"
 }
 

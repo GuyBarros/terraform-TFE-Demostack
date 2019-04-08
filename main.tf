@@ -1,31 +1,39 @@
 
 provider "tfe" {
-  hostname = "${var.TFE_HOSTNAME}"
-  token    = "${var.TFE_TOKEN}"
+  version = "0.8.2"
 }
 
 data "tfe_workspace" "demostack" {
-  name         = "${TFE_WORKSPACE}"
-  organization = "${TFE_ORGANIZATION}"
-}
-
-module "aws" {
-source = "./modules/aws"
-workspace_id = "${tfe_workspace.demostack.id}"
+  name         = "${var.TFE_WORKSPACE}"
+  organization = "${var.TFE_ORGANIZATION}"
 }
 
 
-module "azure" {
-source = "./modules/aws"
-workspace_id = "${tfe_workspace.demostack.id}"
+module "base" {
+source = "./modules/base"
+ workspace_id = "${data.tfe_workspace.demostack.id}"
 }
 
 module "links" {
 source = "./modules/links"
-
- workspace_id = "${tfe_workspace.demostack.id}"
-
+ workspace_id = "${data.tfe_workspace.demostack.id}"
 }
+
+
+module "aws" {
+source = "./modules/aws"
+workspace_id = "${data.tfe_workspace.demostack.id}"
+}
+
+
+module "azure" {
+source = "./modules/azure"
+workspace_id = "${data.tfe_workspace.demostack.id}"
+}
+
+
+
+/*
 
 ###############################################################################
 "TFE_HOSTNAME" = "${var.TFE_HOSTNAME}"
@@ -77,3 +85,4 @@ source = "./modules/links"
 "consul_join_tag_value" = "${var.consul_join_tag_value}"
 "nomad_gossip_key" = "${var.nomad_gossip_key}"
 "run_nomad_jobs" = "${var.run_nomad_jobs}"
+*/

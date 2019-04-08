@@ -7,7 +7,7 @@ variable "TFE_HOSTNAME" {
 }
 variable "TFE_TOKEN" {
   description = "The User token to create workspaces "
-  
+   default     = ""
 }
 
 variable "TFE_WORKSPACE" {
@@ -17,11 +17,13 @@ variable "TFE_WORKSPACE" {
 
 variable "TFE_ORGANIZATION" {
   description = "The TFE Organization to create workspaces "
+   default     = ""
   
 }
 
 variable "workspace_id"{
     description = "workspace id  to pass into the modules "
+     default     = ""
 }
 ####################################################################
 
@@ -81,6 +83,7 @@ EOH
 
 variable "owner" {
   description = "IAM user responsible for lifecycle of cloud resources used for training"
+   default     = ""
 }
 
 variable "created-by" {
@@ -120,6 +123,7 @@ variable "demo_password" {
 
 variable "public_key" {
   description = "The contents of the SSH public key to use for connecting to the cluster."
+   default     = ""
 }
 
 variable "instance_type_server" {
