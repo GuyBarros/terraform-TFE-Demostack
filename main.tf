@@ -1,37 +1,31 @@
-
 provider "tfe" {
-  version = "0.8.2"
+version = "0.9.1"
 }
 
 data "tfe_workspace" "demostack" {
-  name         = "${var.TFE_WORKSPACE}"
-  organization = "${var.TFE_ORGANIZATION}"
+  name         = var.TFE_WORKSPACE
+  organization = var.TFE_ORGANIZATION
 }
 
-
 module "base" {
-source = "./modules/base"
- workspace_id = "${data.tfe_workspace.demostack.id}"
+  source       = "./modules/base"
+  workspace_id = data.tfe_workspace.demostack.id
 }
 
 module "links" {
-source = "./modules/links"
- workspace_id = "${data.tfe_workspace.demostack.id}"
+  source       = "./modules/links"
+  workspace_id = data.tfe_workspace.demostack.id
 }
-
 
 module "aws" {
-source = "./modules/aws"
-workspace_id = "${data.tfe_workspace.demostack.id}"
+  source       = "./modules/aws"
+  workspace_id = data.tfe_workspace.demostack.id
 }
-
 
 module "azure" {
-source = "./modules/azure"
-workspace_id = "${data.tfe_workspace.demostack.id}"
+  source       = "./modules/azure"
+  workspace_id = data.tfe_workspace.demostack.id
 }
-
-
 
 /*
 
