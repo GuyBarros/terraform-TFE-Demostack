@@ -1,6 +1,8 @@
 
 provider "tfe" {
-  version = "0.8.2"
+  version = "0.9.1"
+  hostname = "${var.TFE_HOSTNAME}"
+  token    = "${var.TFE_TOKEN}"
 }
 
 data "tfe_workspace" "demostack" {
