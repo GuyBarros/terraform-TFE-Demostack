@@ -4,7 +4,7 @@
 
 resource "tfe_variable" "owner" {
   key          = "owner"
-  value        = ""
+  value        = var.owner
   category     = "terraform"
   sensitive    = false
   workspace_id ="${var.workspace_id}"
