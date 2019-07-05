@@ -10,8 +10,8 @@ resource "tfe_variable" "owner" {
   workspace_id ="${var.workspace_id}"
 }
 
-resource "tfe_variable" "Ttl" {
-  key          = "Ttl"
+resource "tfe_variable" "TTL" {
+  key          = "TTL"
   value        = "13"
   category     = "terraform"
   sensitive    = false
