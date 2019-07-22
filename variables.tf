@@ -141,6 +141,26 @@ default = "t2.medium"
 
 ################################################################
 
+###################
+# GCP
+###################
+
+variable "gcp_project" {
+  description = "The GCP projct name to be used"
+  default     = ""
+}
+
+variable "gcp_region" {
+  description =  "Region to deploy into"
+  default     = ""
+}
+
+variable "google_credentials" {
+  description = "Google Credentials in JSON format"
+  default     = ""
+}
+
+
 ######
 # Demostack
 #####################

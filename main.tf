@@ -1,5 +1,7 @@
 provider "tfe" {
-version = "0.9.1"
+  version  = "0.9.1"
+  hostname = "${var.TFE_HOSTNAME}"
+  token    = "${var.TFE_TOKEN}"
 }
 
 data "tfe_workspace" "demostack" {
@@ -9,6 +11,7 @@ data "tfe_workspace" "demostack" {
 
 module "base" {
   source       = "./modules/base"
+  owner        = var.owner
   workspace_id = data.tfe_workspace.demostack.id
 }
 
@@ -16,6 +19,9 @@ module "links" {
   source       = "./modules/links"
   workspace_id = data.tfe_workspace.demostack.id
 }
+
+##########################################################################
+# Comment out the provider you don't want to deploy
 
 module "aws" {
   source       = "./modules/aws"
@@ -26,6 +32,14 @@ module "azure" {
   source       = "./modules/azure"
   workspace_id = data.tfe_workspace.demostack.id
 }
+
+module "gcp" {
+  source       = "./modules/gcp"
+  gcp_region   = var.gcp_region
+  gcp_project  = var.gcp_project
+  workspace_id = data.tfe_workspace.demostack.id
+}
+
 
 /*
 
@@ -79,4 +93,7 @@ module "azure" {
 "consul_join_tag_value" = "${var.consul_join_tag_value}"
 "nomad_gossip_key" = "${var.nomad_gossip_key}"
 "run_nomad_jobs" = "${var.run_nomad_jobs}"
+"gcp_project" = "${var.gcp_project}"
+"gcp_region" = "${var.gcp_region}"
+"google_credentials" = "${var.google_credentials}"
 */

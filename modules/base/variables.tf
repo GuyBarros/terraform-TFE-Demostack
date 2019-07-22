@@ -83,3 +83,11 @@ variable "nomad_gossip_key"{
 variable "run_nomad_jobs"{
   default = "1"
 }
+
+##############
+# Generic 
+##############
+variable "owner" {
+description = "IAM user responsible for lifecycle of cloud resources used for training"
+default = ""
+}
