@@ -10,15 +10,6 @@ resource "tfe_variable" "consul_ent_url" {
   workspace_id ="${var.workspace_id}"
 }
 
-resource "tfe_variable" "consul_template_url" {
-  key          = "consul_template_url"
-  value        = "https://releases.hashicorp.com/consul-template/0.19.5/consul-template_0.19.5_linux_amd64.zip"
-  category     = "terraform"
-  sensitive    = false
-  workspace_id ="${var.workspace_id}"
-}
-
-
 resource "tfe_variable" "nomad_ent_url" {
   key          = "nomad_ent_url"
   value        = "https://releases.hashicorp.com/nomad/0.8.7/nomad_0.8.7_linux_amd64.zip"
@@ -27,13 +18,6 @@ resource "tfe_variable" "nomad_ent_url" {
   workspace_id ="${var.workspace_id}"
 }
 
-resource "tfe_variable" "terraform_url" {
-  key          = "terraform_url"
-  value        = "https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip"
-  category     = "terraform"
-  sensitive    = false
-  workspace_id ="${var.workspace_id}"
-}
 
 resource "tfe_variable" "vault_ent_url" {
   key          = "vault_ent_url"
@@ -51,23 +35,6 @@ resource "tfe_variable" "consul_url" {
   workspace_id ="${var.workspace_id}"
 }
 
-
-resource "tfe_variable" "packer_url" {
-  key          = "packer_url"
-  value        = "https://releases.hashicorp.com/packer/1.3.4/packer_1.3.4_linux_amd64.zip"
-  category     = "terraform"
-  sensitive    = false
-  workspace_id ="${var.workspace_id}"
-}
-
-
-resource "tfe_variable" "sentinel_url" {
-  key          = "sentinel_url"
-  value        = "https://releases.hashicorp.com/sentinel/0.9.0/sentinel_0.9.0_linux_amd64.zip"
-  category     = "terraform"
-  sensitive    = false
-  workspace_id ="${var.workspace_id}"
-}
 
 resource "tfe_variable" "fabio_url" {
   key          = "fabio_url"
