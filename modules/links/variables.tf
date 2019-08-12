@@ -20,24 +20,9 @@ variable "consul_ent_url" {
   default     = "https://releases.hashicorp.com/consul/1.2.2/consul_1.2.2_linux_amd64.zip"
 }
 
-variable "packer_url" {
-  description = "The url to download Packer."
-  default     = "https://releases.hashicorp.com/packer/1.2.5/packer_1.2.5_linux_amd64.zip"
-}
-
 variable "sentinel_url" {
   description = "The url to download Sentinel simulator."
   default     = "https://releases.hashicorp.com/sentinel/0.3.0/sentinel_0.3.0_linux_amd64.zip"
-}
-
-variable "consul_template_url" {
-  description = "The url to download Consul Template."
-  default     = "https://releases.hashicorp.com/consul-template/0.19.5/consul-template_0.19.5_linux_amd64.zip"
-}
-
-variable "envconsul_url" {
-  description = "The url to download Envconsul."
-  default     = "https://releases.hashicorp.com/envconsul/0.7.3/envconsul_0.7.3_linux_amd64.zip"
 }
 
 variable "fabio_url" {
