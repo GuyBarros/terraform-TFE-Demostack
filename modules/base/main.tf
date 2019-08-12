@@ -18,21 +18,6 @@ resource "tfe_variable" "TTL" {
   workspace_id ="${var.workspace_id}"
 }
 
-resource "tfe_variable" "demo_username" {
-  key          = "demo_username"
-  value        = "demo"
-  category     = "terraform"
-  sensitive    = false
-  workspace_id ="${var.workspace_id}"
-}
-
-resource "tfe_variable" "demo_password" {
-  key          = "demo_password"
-  value        = "demo"
-  category     = "terraform"
-  sensitive    = false
-  workspace_id ="${var.workspace_id}"
-}
 
 resource "tfe_variable" "consullicense" {
   key          = "consullicense"
@@ -58,13 +43,6 @@ resource "tfe_variable" "enterprise" {
   workspace_id ="${var.workspace_id}"
 }
 
-resource "tfe_variable" "run_nomad_jobs" {
-  key          = "run_nomad_jobs"
-  value        = "1"
-  category     = "terraform"
-  sensitive    = false
-  workspace_id ="${var.workspace_id}"
-}
 
 resource "tfe_variable" "servers" {
   key          = "servers"
