@@ -1,7 +1,6 @@
 provider "tfe" {
   version  = "0.9.1"
-  hostname = "${var.TFE_HOSTNAME}"
-  token    = "${var.TFE_TOKEN}"
+  hostname = var.TFE_HOSTNAME
 }
 
 data "tfe_workspace" "demostack" {
@@ -10,13 +9,27 @@ data "tfe_workspace" "demostack" {
 }
 
 module "base" {
-  source       = "./modules/base"
-  owner        = var.owner
-  workspace_id = data.tfe_workspace.demostack.id
+  source        = "./modules/base"
+  owner         = var.owner
+  TTL           = var.TTL
+  servers       = var.servers
+  workers       = var.workers
+  enterprise    = var.enterprise
+  vaultlicense  = var.vaultlicense
+  consullicense = var.consullicense
+  workspace_id  = data.tfe_workspace.demostack.id
 }
 
 module "links" {
   source       = "./modules/links"
+  consul_url   = var.consul_url
+  consul_ent_url = var.consul_ent_url
+  fabio_url = var.fabio_url
+  hashiui_url = var.hashiui_url
+  nomad_url = var.nomad_url
+  nomad_ent_url = var.nomad_ent_url
+  vault_url = var.vault_url
+  vault_ent_url = vault_ent_url
   workspace_id = data.tfe_workspace.demostack.id
 }
 
@@ -25,75 +38,39 @@ module "links" {
 
 module "aws" {
   source       = "./modules/aws"
-  workspace_id = data.tfe_workspace.demostack.id
+  primary_namespace    = var.primary_namespace
+  secondary_namespace  = var.secondary_namespace
+  tertiary_namespace   = var.tertiary_namespace
+  primary_region       = var.primary_region
+  secondary_region     = var.secondary_region
+  tertiary_region      = var.tertiary_region
+  instance_type_server = var.instance_type_server
+  instance_type_worker = var.instance_type_worker
+  public_key           = var.public_key
+  zone_id              = var.zone_id
+  workspace_id         = data.tfe_workspace.demostack.id
 }
 
 module "azure" {
   source       = "./modules/azure"
-  workspace_id = data.tfe_workspace.demostack.id
+  resource_group  = var.resource_group
+  demo_prefix     = var.demo_prefix
+  hostname        = var.hostname
+  location        = var.location
+  admin_username  = var.admin_username
+  admin_password  = var.admin_password
+  subscription_id = var.subscription_id
+  tenant_id       = var.tenant_id
+  client_id       = var.client_id
+  client_secret   = var.client_secret
+   workspace_id = data.tfe_workspace.demostack.id
 }
 
 module "gcp" {
-  source       = "./modules/gcp"
-  gcp_region   = var.gcp_region
-  gcp_project  = var.gcp_project
+  source             = "./modules/gcp"
+  gcp_region         = var.gcp_region
+  gcp_project        = var.gcp_project
+  google_credentials = var.google_credentials
   workspace_id = data.tfe_workspace.demostack.id
 }
 
-
-/*
-
-###############################################################################
-"TFE_HOSTNAME" = "${var.TFE_HOSTNAME}"
-"TFE_TOKEN" = "${var.TFE_TOKEN}"
-"TFE_WORKSPACE" = "${var.TFE_WORKSPACE}"
-"TFE_ORGANIZATION" = "${var.TFE_ORGANIZATION}"
-"workspace_id" = "${var.workspace_id}"
-"region" = "${var.region}"
-"namespace" = "${var.namespace}"
-"primaryconnectdemo" = "${var.primaryconnectdemo}"
-"primary_region" = "${var.primary_region}"
-"secondary_region" = "${var.secondary_region}"
-"primary_namespace" = "${var.primary_namespace}"
-"secondary_namespace" = "${var.secondary_namespace}"
-"owner" = "${var.owner}"
-"created-by" = "${var.created-by}"
-"sleep-at-night" = "${var.sleep-at-night}"
-"TTL" = "${var.TTL}"
-"vpc_cidr_block" = "${var.vpc_cidr_block}"
-"cidr_blocks" = "${var.cidr_blocks}"
-"demo_username" = "${var.demo_username}"
-"demo_password" = "${var.demo_password}"
-"public_key" = "${var.public_key}"
-"instance_type_server" = "${var.instance_type_server}"
-"instance_type_worker" = "${var.instance_type_worker}"
-"servers" = "${var.servers}"
-"nomadworkers" = "${var.nomadworkers}"
-"enterprise" = "${var.enterprise}"
-"vaultlicense" = "${var.vaultlicense}"
-"consullicense" = "${var.consullicense}"
-"consul_url" = "${var.consul_url}"
-"consul_ent_url" = "${var.consul_ent_url}"
-"packer_url" = "${var.packer_url}"
-"sentinel_url" = "${var.sentinel_url}"
-"consul_template_url" = "${var.consul_template_url}"
-"envconsul_url" = "${var.envconsul_url}"
-"fabio_url" = "${var.fabio_url}"
-"hashiui_url" = "${var.hashiui_url}"
-"nomad_url" = "${var.nomad_url}"
-"nomad_ent_url" = "${var.nomad_ent_url}"
-"terraform_url" = "${var.terraform_url}"
-"vault_url" = "${var.vault_url}"
-"vault_ent_url" = "${var.vault_ent_url}"
-"ca_key_algorithm" = "${var.ca_key_algorithm}"
-"ca_private_key_pem" = "${var.ca_private_key_pem}"
-"ca_cert_pem" = "${var.ca_cert_pem}"
-"consul_gossip_key" = "${var.consul_gossip_key}"
-"consul_master_token" = "${var.consul_master_token}"
-"consul_join_tag_value" = "${var.consul_join_tag_value}"
-"nomad_gossip_key" = "${var.nomad_gossip_key}"
-"run_nomad_jobs" = "${var.run_nomad_jobs}"
-"gcp_project" = "${var.gcp_project}"
-"gcp_region" = "${var.gcp_region}"
-"google_credentials" = "${var.google_credentials}"
-*/

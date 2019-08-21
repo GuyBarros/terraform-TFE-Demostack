@@ -20,10 +20,6 @@ variable "consul_ent_url" {
   default     = "https://releases.hashicorp.com/consul/1.2.2/consul_1.2.2_linux_amd64.zip"
 }
 
-variable "sentinel_url" {
-  description = "The url to download Sentinel simulator."
-  default     = "https://releases.hashicorp.com/sentinel/0.3.0/sentinel_0.3.0_linux_amd64.zip"
-}
 
 variable "fabio_url" {
   description = "The url download fabio."
@@ -43,11 +39,6 @@ variable "nomad_url" {
 variable "nomad_ent_url" {
   description = "The url to download nomad."
   default     = "https://releases.hashicorp.com/nomad/0.8.4/nomad_0.8.4_linux_amd64.zip"
-}
-
-variable "terraform_url" {
-  description = "The url to download terraform."
-  default     = "https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip"
 }
 
 variable "vault_url" {

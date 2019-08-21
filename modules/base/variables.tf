@@ -7,17 +7,26 @@ variable "workspace_id"{
 }
 
 ####################################################################
-
-######
-# Demostack
+# BASE
 #####################
+
+variable "owner" {
+description = "IAM user responsible for lifecycle of cloud resources used for training"
+default = ""
+}
+
+variable "TTL" {
+description = "Hours after which resource expires, used by reaper. Do not use any unit. -1 is infinite."
+default = "240"
+}
+
 
 variable "servers" {
   description = "The number of data servers (consul, nomad, etc)."
   default     = "3"
 }
 
-variable "nomadworkers" {
+variable "workers" {
   description = "The number of nomad worker vms to create."
   default     = "3"
 }
@@ -26,7 +35,7 @@ variable "nomadworkers" {
 
 variable "enterprise" {
   description = "do you want to use the enterprise version of the binaries"
-  default     = false
+  default     = 1
 }
 
 variable "vaultlicense" {
@@ -38,48 +47,4 @@ variable "consullicense" {
   description = "Enterprise License for Consul"
   default     = ""
 }
-######################################################################################
-
-
-#######################
-# TLS
-#######################################
-
-variable "ca_key_algorithm" {
-  default = ""
-}
-
-variable "ca_private_key_pem" {
-  default = ""
-}
-
-variable "ca_cert_pem" {
-  default = ""
-}
-
-variable "consul_gossip_key"{
-  default = ""
-}
-
-variable "consul_master_token"{
-  default = ""
-}
-
-variable "consul_join_tag_value"{
-  default = ""
-}
-
-
-variable "nomad_gossip_key"{
-  default = ""
-}
-
-######################################################################
-
 ##############
-# Generic 
-##############
-variable "owner" {
-description = "IAM user responsible for lifecycle of cloud resources used for training"
-default = ""
-}

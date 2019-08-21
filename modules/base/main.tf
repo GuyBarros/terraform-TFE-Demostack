@@ -7,63 +7,58 @@ resource "tfe_variable" "owner" {
   value        = var.owner
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id =var.workspace_id
 }
 
 resource "tfe_variable" "TTL" {
   key          = "TTL"
-  value        = "13"
+  value        = var.TTL
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id =var.workspace_id
 }
 
 
 resource "tfe_variable" "consullicense" {
   key          = "consullicense"
-  value        = ""
+  value        = var.consullicense
   category     = "terraform"
-  sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  sensitive    = true
+  workspace_id =var.workspace_id
 }
 
 resource "tfe_variable" "vaultlicense" {
   key          = "vaultlicense"
-  value        = ""
+  value        =  var.vaultlicense
   category     = "terraform"
-  sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  sensitive    = true
+  workspace_id =var.workspace_id
 }
 
 resource "tfe_variable" "enterprise" {
   key          = "enterprise"
-  value        = "1"
+  value        = var.enterprise
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id =var.workspace_id
 }
 
 
 resource "tfe_variable" "servers" {
   key          = "servers"
-  value        = "3"
+  value        = var.servers
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id =var.workspace_id
 }
 
 resource "tfe_variable" "workers" {
   key          = "workers"
-  value        = "3"
+  value        = var.workers
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id =var.workspace_id
 }
-
-
-
-
-
 
 
 
@@ -75,6 +70,6 @@ resource "tfe_variable" "workers" {
   value        =  1
   category     = "env"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id =var.workspace_id
 }
 
