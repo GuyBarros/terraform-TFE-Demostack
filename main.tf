@@ -29,13 +29,13 @@ module "links" {
   nomad_url = var.nomad_url
   nomad_ent_url = var.nomad_ent_url
   vault_url = var.vault_url
-  vault_ent_url = vault_ent_url
+  vault_ent_url = var.vault_ent_url
   workspace_id = data.tfe_workspace.demostack.id
 }
 
 ##########################################################################
 # Comment out the provider you don't want to deploy
-
+/*
 module "aws" {
   source       = "./modules/aws"
   primary_namespace    = var.primary_namespace
@@ -65,7 +65,7 @@ module "azure" {
   client_secret   = var.client_secret
    workspace_id = data.tfe_workspace.demostack.id
 }
-
+*/
 module "gcp" {
   source             = "./modules/gcp"
   gcp_region         = var.gcp_region
@@ -73,4 +73,3 @@ module "gcp" {
   google_credentials = var.google_credentials
   workspace_id = data.tfe_workspace.demostack.id
 }
-

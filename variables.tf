@@ -8,12 +8,12 @@ variable "TFE_HOSTNAME" {
 
 variable "TFE_WORKSPACE" {
   description = "The TFE workspace  to create the variables"
-  default     = "app.terraform.io"
+  default     = "Guy-GCP-Demostack"
 }
 
 variable "TFE_ORGANIZATION" {
   description = "The TFE Organization to create workspaces "
-  default     = ""
+  default     = "emea-se-playground-2019"
 }
 
 variable "workspace_id" {
@@ -79,7 +79,7 @@ default = "t2.medium"
 
 variable "public_key" {
 description = "The contents of the SSH public key to use for connecting to the cluster."
-value = ""
+default = ""
 }
 
 
@@ -108,15 +108,30 @@ variable "gcp_region" {
 variable "google_credentials" {
   description = "Google Credentials in JSON format"
   default     = ""
-}
+} 
 
 
 ######
 # Demostack
 #####################
 
+variable "TTL" {
+description = "TTL value for tags"
+default = "72"
+}
+variable "owner" {
+description = "owner value for tags"
+default = "guybarros"
+}
+
+
 variable "servers" {
 description = "The number of data servers (consul, nomad, etc)."
+default = "3"
+}
+
+variable "workers" {
+description = "The number of data workers (consul, nomad, etc)."
 default = "3"
 }
 
@@ -139,6 +154,7 @@ variable "consullicense" {
 description = "Enterprise License for Consul"
 default = ""
 }
+
 
 ######################################################################################
 
