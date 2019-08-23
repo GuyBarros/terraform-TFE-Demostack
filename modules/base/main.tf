@@ -61,6 +61,15 @@ resource "tfe_variable" "workers" {
 }
 
 
+resource "tfe_variable" "run_nomad_jobs" {
+  key          = "run_nomad_jobs"
+  value        = var.run_nomad_jobs
+  category     = "terraform"
+  sensitive    = false
+  workspace_id =var.workspace_id
+}
+
+
 
 ###########
 # Providers

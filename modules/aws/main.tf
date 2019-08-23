@@ -84,7 +84,15 @@ resource "tfe_variable" "zone_id" {
   value        = var.zone_id
   category     = "terraform"
   sensitive    = false
-  workspace_id =var.zone_id
+  workspace_id =var.workspace_id
+}
+
+resource "tfe_variable" "host_access_ip" {
+  key          = "host_access_ip"
+  value        = var.host_access_ip
+  category     = "terraform"
+  sensitive    = false
+  workspace_id =var.workspace_id
 }
 
 
