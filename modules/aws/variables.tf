@@ -62,7 +62,7 @@ default = "t2.medium"
 
 variable "public_key" {
 description = "The contents of the SSH public key to use for connecting to the cluster."
-value = ""
+default = ""
 }
 
 
@@ -74,5 +74,5 @@ variable "zone_id" {
 
 variable "host_access_ip" {
   description = "CIDR blocks allowed to connect via SSH on port 22"
-  default = [  ]
+  default = ""
 }

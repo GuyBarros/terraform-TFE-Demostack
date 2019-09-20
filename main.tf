@@ -1,5 +1,4 @@
 provider "tfe" {
-  version  = "0.9.1"
   hostname = var.TFE_HOSTNAME
 }
 
@@ -9,35 +8,37 @@ data "tfe_workspace" "demostack" {
 }
 
 module "base" {
-  source        = "./modules/base"
-  owner         = var.owner
-  TTL           = var.TTL
-  servers       = var.servers
-  workers       = var.workers
-  enterprise    = var.enterprise
-  vaultlicense  = var.vaultlicense
-  consullicense = var.consullicense
-  workspace_id  = data.tfe_workspace.demostack.id
+  source         = "./modules/base"
+  owner          = var.owner
+  TTL            = var.TTL
+  servers        = var.servers
+  workers        = var.workers
+  enterprise     = var.enterprise
+  vaultlicense   = var.vaultlicense
+  consullicense  = var.consullicense
+  run_nomad_jobs = var.run_nomad_jobs
+  workspace_id   = data.tfe_workspace.demostack.id
 }
 
-module "links" {
-  source       = "./modules/links"
-  consul_url   = var.consul_url
+module "urls" {
+  source         = "./modules/urls"
+  consul_url     = var.consul_url
   consul_ent_url = var.consul_ent_url
-  fabio_url = var.fabio_url
-  hashiui_url = var.hashiui_url
-  nomad_url = var.nomad_url
-  nomad_ent_url = var.nomad_ent_url
-  vault_url = var.vault_url
-  vault_ent_url = var.vault_ent_url
-  workspace_id = data.tfe_workspace.demostack.id
+  fabio_url      = var.fabio_url
+  hashiui_url    = var.hashiui_url
+  nomad_url      = var.nomad_url
+  nomad_ent_url  = var.nomad_ent_url
+  vault_url      = var.vault_url
+  vault_ent_url  = var.vault_ent_url
+  cni_plugin_url = var.cni_plugin_url
+  workspace_id   = data.tfe_workspace.demostack.id
 }
 
 ##########################################################################
 # Comment out the provider you don't want to deploy
-/*
+
 module "aws" {
-  source       = "./modules/aws"
+  source               = "./modules/aws"
   primary_namespace    = var.primary_namespace
   secondary_namespace  = var.secondary_namespace
   tertiary_namespace   = var.tertiary_namespace
@@ -50,7 +51,7 @@ module "aws" {
   zone_id              = var.zone_id
   workspace_id         = data.tfe_workspace.demostack.id
 }
-
+/*
 module "azure" {
   source       = "./modules/azure"
   resource_group  = var.resource_group
@@ -65,7 +66,7 @@ module "azure" {
   client_secret   = var.client_secret
    workspace_id = data.tfe_workspace.demostack.id
 }
-*/
+
 module "gcp" {
   source             = "./modules/gcp"
   gcp_region         = var.gcp_region
@@ -73,3 +74,4 @@ module "gcp" {
   google_credentials = var.google_credentials
   workspace_id = data.tfe_workspace.demostack.id
 }
+*/

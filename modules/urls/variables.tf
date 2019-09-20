@@ -50,3 +50,9 @@ variable "vault_ent_url" {
   description = "The url to download vault."
   default     = "https://s3-us-west-2.amazonaws.com/hc-enterprise-binaries/vault/ent/0.11.1/vault-enterprise_0.11.1%2Bent_linux_amd64.zip"
 }
+
+
+variable "cni_plugin_url" {
+  description = "The url to download teh CNI plugin for nomad."
+  default     = "https://github.com/containernetworking/plugins/releases/download/v0.8.2/cni-plugins-linux-amd64-v0.8.2.tgz"
+}

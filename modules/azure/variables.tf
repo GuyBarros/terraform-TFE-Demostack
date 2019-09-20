@@ -1,5 +1,5 @@
 ##################
-#TFE
+#Azure
 ###################
 
 variable "workspace_id"{

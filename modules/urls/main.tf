@@ -71,4 +71,12 @@ resource "tfe_variable" "vault_url" {
 }
 
 
+resource "tfe_variable" "cni_plugin_url" {
+  key          = "cni_plugin_url"
+  value        = var.cni_plugin_url
+  category     = "terraform"
+  sensitive    = false
+  workspace_id ="${var.workspace_id}"
+}
+
 

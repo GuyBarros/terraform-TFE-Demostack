@@ -53,4 +53,3 @@ variable "run_nomad_jobs"{
  default = "0" 
 }
 
-##############

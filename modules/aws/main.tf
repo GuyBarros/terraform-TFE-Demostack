@@ -89,7 +89,7 @@ resource "tfe_variable" "zone_id" {
 
 resource "tfe_variable" "host_access_ip" {
   key          = "host_access_ip"
-  value        = var.host_access_ip
+  value        = "[${var.host_access_ip}]"
   hcl          = true
   category     = "terraform"
   sensitive    = false
