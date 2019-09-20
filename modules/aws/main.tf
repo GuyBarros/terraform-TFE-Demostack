@@ -62,8 +62,8 @@ resource "tfe_variable" "instance_type_server" {
   workspace_id =var.workspace_id
 }
 
-resource "tfe_variable" "instance_type_workers" {
-  key          = "instance_type_workers"
+resource "tfe_variable" "instance_type_worker" {
+  key          = "instance_type_worker"
   value        = "t2.medium"
   category     = "terraform"
   sensitive    = false
