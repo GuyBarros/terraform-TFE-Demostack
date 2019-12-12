@@ -69,6 +69,10 @@ variable "run_nomad_jobs" {
 }
 
 
+variable "primary_datacenter"{
+  description = "the primary datacenter for mesh gateways"
+  default = ""
+}
 
 #####################
 # AWS

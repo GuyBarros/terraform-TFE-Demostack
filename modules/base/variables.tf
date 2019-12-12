@@ -53,3 +53,7 @@ variable "run_nomad_jobs"{
  default = "0" 
 }
 
+variable "primary_datacenter"{
+  description = "the primary datacenter for mesh gateways"
+  default = ""
+}

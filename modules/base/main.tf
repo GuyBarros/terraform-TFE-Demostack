@@ -69,6 +69,14 @@ resource "tfe_variable" "run_nomad_jobs" {
   workspace_id =var.workspace_id
 }
 
+resource "tfe_variable" "primary_datacenter" {
+  key          = "primary_datacenter"
+  value        = var.primary_datacenter
+  category     = "terraform"
+  sensitive    = false
+  workspace_id =var.workspace_id
+}
+
 
 
 ###########

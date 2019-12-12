@@ -7,7 +7,7 @@ resource "tfe_variable" "consul_ent_url" {
   value        =  var.consul_ent_url
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id = var.workspace_id
 }
 
 resource "tfe_variable" "nomad_ent_url" {
@@ -15,7 +15,7 @@ resource "tfe_variable" "nomad_ent_url" {
   value        = var.nomad_ent_url
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id = var.workspace_id
 }
 
 
@@ -24,7 +24,7 @@ resource "tfe_variable" "vault_ent_url" {
   value        = var.vault_ent_url
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id = var.workspace_id
 }
 
 resource "tfe_variable" "consul_url" {
@@ -32,7 +32,7 @@ resource "tfe_variable" "consul_url" {
   value        = var.consul_url
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id = var.workspace_id
 }
 
 
@@ -41,15 +41,7 @@ resource "tfe_variable" "fabio_url" {
   value        = var.fabio_url
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
-}
-
-resource "tfe_variable" "hashiui_url" {
-  key          = "hashiui_url"
-  value        = var.hashiui_url
-  category     = "terraform"
-  sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id = var.workspace_id
 }
 
 
@@ -58,7 +50,7 @@ resource "tfe_variable" "nomad_url" {
   value        = var.nomad_url
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id = var.workspace_id
 }
 
 
@@ -67,7 +59,7 @@ resource "tfe_variable" "vault_url" {
   value        = var.vault_url
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id = var.workspace_id
 }
 
 
@@ -76,7 +68,7 @@ resource "tfe_variable" "cni_plugin_url" {
   value        = var.cni_plugin_url
   category     = "terraform"
   sensitive    = false
-  workspace_id ="${var.workspace_id}"
+  workspace_id = var.workspace_id
 }
 
 

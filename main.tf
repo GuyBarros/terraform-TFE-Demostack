@@ -17,6 +17,7 @@ module "base" {
   vaultlicense   = var.vaultlicense
   consullicense  = var.consullicense
   run_nomad_jobs = var.run_nomad_jobs
+  primary_datacenter = var.primary_datacenter
   workspace_id   = data.tfe_workspace.demostack.id
 }
 
@@ -25,7 +26,6 @@ module "urls" {
   consul_url     = var.consul_url
   consul_ent_url = var.consul_ent_url
   fabio_url      = var.fabio_url
-  hashiui_url    = var.hashiui_url
   nomad_url      = var.nomad_url
   nomad_ent_url  = var.nomad_ent_url
   vault_url      = var.vault_url
