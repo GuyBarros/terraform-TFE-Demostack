@@ -2,10 +2,18 @@ provider "tfe" {
   hostname = var.TFE_HOSTNAME
 }
 
+/*
 data "tfe_workspace" "demostack" {
   name         = var.TFE_WORKSPACE
   organization = var.TFE_ORGANIZATION
 }
+*/
+
+
+resource "tfe_workspace" "demostack" {
+  name         = var.TFE_DEMOSTACK_WORKSPACE
+  organization = var.TFE_ORGANIZATION
+  }
 
 module "base" {
   source         = "./modules/base"
@@ -18,7 +26,7 @@ module "base" {
   consullicense  = var.consullicense
   run_nomad_jobs = var.run_nomad_jobs
   primary_datacenter = var.primary_datacenter
-  workspace_id   = data.tfe_workspace.demostack.id
+  workspace_id   = tfe_workspace.demostack.id
 }
 
 module "urls" {
@@ -31,7 +39,7 @@ module "urls" {
   vault_url      = var.vault_url
   vault_ent_url  = var.vault_ent_url
   cni_plugin_url = var.cni_plugin_url
-  workspace_id   = data.tfe_workspace.demostack.id
+  workspace_id   = tfe_workspace.demostack.id
 }
 
 ##########################################################################
@@ -49,7 +57,7 @@ module "aws" {
   instance_type_worker = var.instance_type_worker
   public_key           = var.public_key
   zone_id              = var.zone_id
-  workspace_id         = data.tfe_workspace.demostack.id
+  workspace_id         = tfe_workspace.demostack.id
 }
 /*
 module "azure" {
@@ -64,7 +72,7 @@ module "azure" {
   tenant_id       = var.tenant_id
   client_id       = var.client_id
   client_secret   = var.client_secret
-   workspace_id = data.tfe_workspace.demostack.id
+   workspace_id = tfe_workspace.demostack.id
 }
 
 module "gcp" {
@@ -72,6 +80,40 @@ module "gcp" {
   gcp_region         = var.gcp_region
   gcp_project        = var.gcp_project
   google_credentials = var.google_credentials
-  workspace_id = data.tfe_workspace.demostack.id
+  workspace_id = tfe_workspace.demostack.id
 }
 */
+
+module "tls_root"{
+source             = "./modules/tls_root"
+TFE_TLS_ROOT_WORKSPACE    = var.TFE_TLS_ROOT_WORKSPACE
+TFE_ORGANIZATION = var.TFE_ORGANIZATION
+validity_period_hours = var.validity_period_hours
+organization = var.organization
+is_ca_certificate  = var.is_ca_certificate
+ecdsa_curve = var.ecdsa_curve
+common_name = var.common_name
+algorithm  = var.algorithm
+}
+
+module "dns"{
+source             = "./modules/dns"
+TFE_DNS_WORKSPACE    = var.TFE_DNS_WORKSPACE
+TFE_ORGANIZATION = var.TFE_ORGANIZATION
+hosted-zone = var.hosted-zone
+AWS_ACCESS_KEY_ID = var.AWS_ACCESS_KEY_ID 	
+AWS_SECRET_ACCESS_KEY = var.AWS_SECRET_ACCESS_KEY
+ARM_SUBSCRIPTION_ID = var.ARM_SUBSCRIPTION_ID 	
+ARM_TENANT_ID = var.ARM_TENANT_ID
+ARM_CLIENT_ID = var.ARM_CLIENT_ID
+ARM_CLIENT_SECRET = var.ARM_CLIENT_SECRET
+GOOGLE_CREDENTIALS = var.GOOGLE_CREDENTIALS
+owner = var.owner
+namespace = var.namespace
+created-by  = var.created-by
+create_aws_dns_zone  = var.create_aws_dns_zone
+create_azure_dns_zone = var.create_azure_dns_zone
+create_gcp_dns_zone = var.create_gcp_dns_zone
+gcp_project = var.gcp_project
+gcp_region   = var.gcp_region
+}

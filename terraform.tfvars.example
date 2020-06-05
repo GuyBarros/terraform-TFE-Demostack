@@ -1,7 +1,7 @@
 #####################
 #TFE Settings
 #####################
-TFE_WORKSPACE=""
+TFE_DEMOSTACK_WORKSPACE=""
 TFE_ORGANIZATION=""
 #####################
 # Base
@@ -70,4 +70,25 @@ consul_gossip_key = ""
 consul_master_token = ""
 consul_join_tag_value = ""
 nomad_gossip_key = ""
+#####################
+# TLS_Root
+#####################
+TFE_TLS_ROOT_WORKSPACE    = "tls-root-certificate"
+validity_period_hours = "8760"
+organization = "HashiCorp Emea Demostack"
+is_ca_certificate  = "true"
+ecdsa_curve = "P521"
+common_name = "service.consul"
+algorithm  = "ECDSA"
+###################
+# DNS
+###################
+hosted-zone = "hashidemos.io"
+AWS_ACCESS_KEY_ID = "" 	
+AWS_SECRET_ACCESS_KEY = ""
+ARM_SUBSCRIPTION_ID = "" 	
+ARM_TENANT_ID = ""
+ARM_CLIENT_ID = ""
+ARM_CLIENT_SECRET = ""
+GOOGLE_CREDENTIALS = ""
 

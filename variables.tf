@@ -6,7 +6,7 @@ variable "TFE_HOSTNAME" {
   default     = "app.terraform.io"
 }
 
-variable "TFE_WORKSPACE" {
+variable "TFE_DEMOSTACK_WORKSPACE" {
   description = "The TFE workspace  to create the variables"
   default     = "Guy-GCP-Demostack"
 }
@@ -16,10 +16,6 @@ variable "TFE_ORGANIZATION" {
   default     = "emea-se-playground-2019"
 }
 
-variable "workspace_id" {
-  description = "workspace id  to pass into the modules "
-  default     = ""
-}
 
 #####################
 # Base
@@ -292,4 +288,132 @@ variable "consul_join_tag_value" {
 
 variable "nomad_gossip_key" {
   default = ""
+}
+
+##################################
+## TLS Root 
+#################################
+variable "TFE_TLS_ROOT_WORKSPACE" {
+  description = "The TFE workspace  to create the variables"
+  default     = "tls-root-certificate"
+}
+
+variable "validity_period_hours" {
+description = "How long should this CA root be valid for"
+default = "8760"
+}
+
+
+variable "organization" {
+description = "The Organization this CA root is for"
+default = "HashiCorp Emea Demostack"
+}
+
+
+variable "is_ca_certificate" {
+description = "are the outputs of this module for a CA?"
+default = "true"
+}
+
+
+variable "ecdsa_curve" {
+description = "ecdsa curve to be used for the generation of the private key"
+default = "P521"
+}
+
+variable "common_name" {
+description = "the common name for the Root CA"
+default = "service.consul"
+}
+
+
+variable "algorithm" {
+description = "Encryption Algorithm to be used"
+default = "ECDSA"
+}
+
+
+##################################
+## DNS 
+#################################
+variable "TFE_DNS_WORKSPACE" {
+  description = "The TFE workspace  to create the variables"
+  default     = "Guy-DNS-Zone"
+}
+
+variable "hosted-zone" {
+  description = "The name of the dns zone on Route 53 that will be used as the master zone"
+}
+
+
+variable "created-by" {
+  description = "Tag used to identify resources created programmatically by Terraform"
+  default     = "terraform"
+}
+
+variable "namespace" {
+  description = "Name of the zone e.g. demo"
+}
+
+# AWS
+
+variable "create_aws_dns_zone" {
+  description = "Set to true if you want to deploy the AWS delegated zone."
+  type        = bool
+  default     = "false"
+}
+
+variable "aws_region" {
+  description = "The region to create resources."
+  default     = "eu-west-2"
+}
+
+# Azure
+
+variable "create_azure_dns_zone" {
+  description = "Set to true if you want to deploy the Azure delegated zone."
+  type        = bool
+  default     = "false"
+}
+
+variable "azure_location" {
+  description = "The azure location to deploy the DNS service"
+  default     = "West Europe"
+}
+
+# GCP
+
+variable "create_gcp_dns_zone" {
+  description = "Set to true if you want to deploy the Azure delegated zone."
+  type        = bool
+  default     = "false"
+}
+
+
+variable "AWS_ACCESS_KEY_ID" {
+  default     = ""
+}
+
+variable "AWS_SECRET_ACCESS_KEY" {
+  default     = ""
+}
+
+variable "ARM_SUBSCRIPTION_ID" {
+  default     = ""
+}
+
+variable "ARM_TENANT_ID" {
+  default     = ""
+}
+
+variable "ARM_CLIENT_ID" {
+  default     = ""
+}
+
+variable "ARM_CLIENT_SECRET" {
+  default     = ""
+}
+
+variable "GOOGLE_CREDENTIALS" {
+  default     = ""
 }
