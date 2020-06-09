@@ -6,15 +6,12 @@ variable "TFE_HOSTNAME" {
   default     = "app.terraform.io"
 }
 
-variable "TFE_DEMOSTACK_WORKSPACE" {
-  description = "The TFE workspace  to create the variables"
-  default     = "Guy-GCP-Demostack"
-}
 
 variable "TFE_ORGANIZATION" {
   description = "The TFE Organization to create workspaces "
   default     = "emea-se-playground-2019"
 }
+
 
 
 #####################
@@ -65,14 +62,20 @@ variable "run_nomad_jobs" {
 }
 
 
-variable "primary_datacenter"{
+variable "primary_datacenter" {
   description = "the primary datacenter for mesh gateways"
-  default = ""
+  default     = ""
 }
 
 #####################
 # AWS
 #####################
+variable "TFE_AWS_DEMOSTACK_WORKSPACE" {
+  description = "The TFE workspace  to create the variables"
+  default     = "Guy-AWS-Demostack"
+}
+
+
 variable "primary_namespace" {
   description = <<EOH
 this is the differantiates different demostack deployment on the same subscription, everycluster should have a different value
@@ -136,11 +139,15 @@ variable "zone_id" {
 
 variable "host_access_ip" {
   description = "CIDR blocks allowed to connect via SSH on port 22"
-  default = ""
+  default     = ""
 }
 #####################
 #Azure
 #####################
+variable "TFE_AZURE_DEMOSTACK_WORKSPACE" {
+  description = "The TFE workspace  to create the variables"
+  default     = "Guy-AZURE-Demostack"
+}
 
 variable "resource_group" {
   description = "The name of your Azure Resource Group."
@@ -191,6 +198,12 @@ variable "client_secret" {
 # GCP
 #####################
 
+variable "TFE_GCP_DEMOSTACK_WORKSPACE" {
+  description = "The TFE workspace  to create the variables"
+  default     = "Guy-GCP-Demostack"
+}
+
+
 variable "gcp_project" {
   description = "The GCP projct name to be used"
   default     = ""
@@ -198,11 +211,6 @@ variable "gcp_project" {
 
 variable "gcp_region" {
   description = "Region to deploy into"
-  default     = ""
-}
-
-variable "google_credentials" {
-  description = "Google Credentials in JSON format"
   default     = ""
 }
 
@@ -299,37 +307,37 @@ variable "TFE_TLS_ROOT_WORKSPACE" {
 }
 
 variable "validity_period_hours" {
-description = "How long should this CA root be valid for"
-default = "8760"
+  description = "How long should this CA root be valid for"
+  default     = "8760"
 }
 
 
 variable "organization" {
-description = "The Organization this CA root is for"
-default = "HashiCorp Emea Demostack"
+  description = "The Organization this CA root is for"
+  default     = "HashiCorp Emea Demostack"
 }
 
 
 variable "is_ca_certificate" {
-description = "are the outputs of this module for a CA?"
-default = "true"
+  description = "are the outputs of this module for a CA?"
+  default     = "true"
 }
 
 
 variable "ecdsa_curve" {
-description = "ecdsa curve to be used for the generation of the private key"
-default = "P521"
+  description = "ecdsa curve to be used for the generation of the private key"
+  default     = "P521"
 }
 
 variable "common_name" {
-description = "the common name for the Root CA"
-default = "service.consul"
+  description = "the common name for the Root CA"
+  default     = "service.consul"
 }
 
 
 variable "algorithm" {
-description = "Encryption Algorithm to be used"
-default = "ECDSA"
+  description = "Encryption Algorithm to be used"
+  default     = "ECDSA"
 }
 
 
@@ -391,29 +399,29 @@ variable "create_gcp_dns_zone" {
 
 
 variable "AWS_ACCESS_KEY_ID" {
-  default     = ""
+  default = ""
 }
 
 variable "AWS_SECRET_ACCESS_KEY" {
-  default     = ""
+  default = ""
 }
 
 variable "ARM_SUBSCRIPTION_ID" {
-  default     = ""
+  default = ""
 }
 
 variable "ARM_TENANT_ID" {
-  default     = ""
+  default = ""
 }
 
 variable "ARM_CLIENT_ID" {
-  default     = ""
+  default = ""
 }
 
 variable "ARM_CLIENT_SECRET" {
-  default     = ""
+  default = ""
 }
 
 variable "GOOGLE_CREDENTIALS" {
-  default     = ""
+  default = ""
 }

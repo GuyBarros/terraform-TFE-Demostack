@@ -1,7 +1,7 @@
 #####################
 #TFE Settings
 #####################
-TFE_DEMOSTACK_WORKSPACE=""
+TFE_AWS_DEMOSTACK_WORKSPACE=""
 TFE_ORGANIZATION=""
 #####################
 # Base
