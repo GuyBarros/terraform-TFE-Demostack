@@ -35,6 +35,14 @@ resource "tfe_variable" "vaultlicense" {
   workspace_id =var.workspace_id
 }
 
+resource "tfe_variable" "nomadlicense" {
+  key          = "nomadlicense"
+  value        =  var.nomadlicense
+  category     = "terraform"
+  sensitive    = true
+  workspace_id =var.workspace_id
+}
+
 resource "tfe_variable" "enterprise" {
   key          = "enterprise"
   value        = var.enterprise

@@ -1,6 +1,6 @@
 provider "tfe" {
   hostname = var.TFE_HOSTNAME
-}
+ }
 
 
 ##########################################################################
@@ -29,6 +29,7 @@ module "aws" {
   enterprise           = var.enterprise
   vaultlicense         = var.vaultlicense
   consullicense        = var.consullicense
+  nomadlicense         = var.nomadlicense
   run_nomad_jobs       = var.run_nomad_jobs
   primary_datacenter   = var.primary_datacenter
   consul_url           = var.consul_url
@@ -40,6 +41,7 @@ module "aws" {
   vault_ent_url        = var.vault_ent_url
   cni_plugin_url       = var.cni_plugin_url
 }
+
 
 module "azure" {
   source       = "./modules/azure"
@@ -62,6 +64,7 @@ module "azure" {
   enterprise     = var.enterprise
   vaultlicense   = var.vaultlicense
   consullicense  = var.consullicense
+  nomadlicense         = var.nomadlicense
   run_nomad_jobs = var.run_nomad_jobs
   primary_datacenter = var.primary_datacenter
   consul_url     = var.consul_url
@@ -89,6 +92,7 @@ module "gcp" {
   enterprise     = var.enterprise
   vaultlicense   = var.vaultlicense
   consullicense  = var.consullicense
+  nomadlicense         = var.nomadlicense
   run_nomad_jobs = var.run_nomad_jobs
   primary_datacenter = var.primary_datacenter
   consul_url     = var.consul_url
