@@ -57,6 +57,12 @@ variable "consullicense" {
   description = "Enterprise License for Consul"
   default     = ""
 }
+
+variable "nomadlicense" {
+  description = "Enterprise License for Nomad"
+  default     = ""
+}
+
 variable "run_nomad_jobs" {
   default = "0"
 }

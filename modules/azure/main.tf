@@ -17,6 +17,7 @@ module "base" {
   enterprise     = var.enterprise
   vaultlicense   = var.vaultlicense
   consullicense  = var.consullicense
+  nomadlicense   = var.nomadlicense
   run_nomad_jobs = var.run_nomad_jobs
   primary_datacenter = var.primary_datacenter
   workspace_id   = tfe_workspace.demostack.id
