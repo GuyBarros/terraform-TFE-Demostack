@@ -82,8 +82,8 @@ module "gcp" {
   source             = "./modules/gcp"
   TFE_GCP_DEMOSTACK_WORKSPACE = var.TFE_GCP_DEMOSTACK_WORKSPACE
   TFE_ORGANIZATION     = var.TFE_ORGANIZATION
-  gcp_region         = var.gcp_region
-  gcp_project        = var.gcp_project
+  gcp_region         = var.demostsack_gcp_region
+  gcp_project        = var.demostsack_gcp_project
   GOOGLE_CREDENTIALS = var.GOOGLE_CREDENTIALS
   owner          = var.owner
   TTL            = var.TTL
@@ -107,6 +107,7 @@ module "gcp" {
 
 
 module "tls_root" {
+  count   = var.create_tls_root ? 1 : 0
   source                 = "./modules/tls_root"
   TFE_TLS_ROOT_WORKSPACE = var.TFE_TLS_ROOT_WORKSPACE
   TFE_ORGANIZATION       = var.TFE_ORGANIZATION
@@ -118,8 +119,10 @@ module "tls_root" {
   algorithm              = var.algorithm
 }
 
+
 module "dns" {
   source                = "./modules/dns"
+  # count   = var.create_dns ? 1 : 0
   TFE_DNS_WORKSPACE     = var.TFE_DNS_WORKSPACE
   TFE_ORGANIZATION      = var.TFE_ORGANIZATION
   hosted-zone           = var.hosted-zone
@@ -136,6 +139,27 @@ module "dns" {
   create_aws_dns_zone   = var.create_aws_dns_zone
   create_azure_dns_zone = var.create_azure_dns_zone
   create_gcp_dns_zone   = var.create_gcp_dns_zone
-  gcp_project           = var.gcp_project
-  gcp_region            = var.gcp_region
+  gcp_project           = var.dns_gcp_project
+ }
+////////////// WIP
+/*
+ resource "tfe_run_trigger" "DNS_TLS" {
+  workspace_id  = tfe_workspace.test-workspace.id
+  sourceable_id = tfe_workspace.test-sourceable.id
 }
+
+resource "tfe_run_trigger" "TLS_AWS_DEMOSTACK" {
+  workspace_id  = tfe_workspace.test-workspace.id
+  sourceable_id = tfe_workspace.test-sourceable.id
+}
+
+resource "tfe_run_trigger" "TLS_AZURE_DEMOSTACK" {
+  workspace_id  = tfe_workspace.test-workspace.id
+  sourceable_id = tfe_workspace.test-sourceable.id
+}
+
+resource "tfe_run_trigger" "TLS_GCP_DEMOSTACK" {
+  workspace_id  = tfe_workspace.test-workspace.id
+  sourceable_id = tfe_workspace.test-sourceable.id
+}
+*/

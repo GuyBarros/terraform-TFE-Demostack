@@ -1,4 +1,15 @@
 #####################
+#Control Vars
+#####################
+variable "create_tls_root" {
+  description = "do you want to create the TLS root workspace and TF project"
+  type        = bool
+  default     = "true"
+}
+
+
+
+#####################
 #TFE
 #####################
 variable "TFE_HOSTNAME" {
@@ -210,12 +221,12 @@ variable "TFE_GCP_DEMOSTACK_WORKSPACE" {
 }
 
 
-variable "gcp_project" {
+variable "demostsack_gcp_project" {
   description = "The GCP projct name to be used"
   default     = ""
 }
 
-variable "gcp_region" {
+variable "demostsack_gcp_region" {
   description = "Region to deploy into"
   default     = ""
 }
@@ -403,6 +414,14 @@ variable "create_gcp_dns_zone" {
   default     = "false"
 }
 
+
+
+variable "dns_gcp_project" {
+  description = "The GCP projct name to be used"
+  default     = ""
+}
+
+# ENV
 
 variable "AWS_ACCESS_KEY_ID" {
   default = ""

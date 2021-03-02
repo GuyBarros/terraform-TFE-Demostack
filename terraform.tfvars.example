@@ -1,94 +1,95 @@
-#####################
-#TFE Settings
-#####################
-TFE_AWS_DEMOSTACK_WORKSPACE=""
-TFE_ORGANIZATION=""
+
 #####################
 # Base
 #####################
-TTL = "72"
-owner = ""
-servers = "3"
-workers = "3"
-nomadworkers = "3"
-enterprise = true
-vaultlicense = ""
-consullicense = ""
-run_nomad_jobs = "1" 
-#####################
-#AWS
-#####################
-primary_namespace="EU-mystack"
-secondary_namespace="SA-mystack"
-tertiary_namespace="AP-mystack"
-primary_region = "eu-west-2"
-secondary_region = "eu-west-2"
-tertiary_region = "ap-northeast-1"
-instance_type_server = "t2.large"
-instance_type_worker = "t2.medium"
-public_key = ""
-zone_id   = ""
-host_access_ip = [  ]
-#####################
-#Azure
-#####################
-resource_group = "Azure-Consul-Demo"
-demo_prefix  = "demostack"
-hostname    = "demostack"
-location  = "centralus"
-admin_username = "admin"
-admin_password = "replace-with-your-password"
-subscription_id = "your subscription ID for Vault KMS Auto Unseal"
-tenant_id = "your tenant ID for Vault KMS Auto Unseal"
-client_id = "your client ID for Vault KMS Auto Unseal"
-client_secret = "your client ID for Vault KMS Auto Unseal"
-###################
-# GCP
-###################
-gcp_project   = ""
-gcp_region    = ""
-google_credentials  = ""
+TTL                         = "72"
+owner                       = "Guy"
+servers                     = "3"
+workers                     = "3"
+nomadworkers                = "3"
+enterprise                  = true
+vaultlicense                = "02MV4UU43B"
+consullicense               = "02MV4UU43B"
+nomadlicense                = "02MV4UU43B"
+run_nomad_jobs              = "1"
 #####################
 # URLs
 #####################
-consul_url = "https://releases.hashicorp.com/consul/1.6.1/consul_1.6.1_linux_amd64.zip"
-consul_ent_url = "https://releases.hashicorp.com/consul/1.6.1+ent/consul_1.6.1+ent_linux_amd64.zip"
-fabio_url = "https://github.com/fabiolb/fabio/releases/download/v1.5.11/fabio-1.5.11-go1.11.5-linux_amd64"
-hashiui_url = "https://github.com/jippi/hashi-ui/releases/download/v1.1.0/hashi-ui-linux-amd64"
-nomad_url = "https://releases.hashicorp.com/nomad/0.10.0-connect1/nomad_0.10.0-connect1_linux_amd64.zip"
-nomad_ent_url = "https://releases.hashicorp.com/nomad/0.10.0-connect1/nomad_0.10.0-connect1_linux_amd64.zip"
-vault_url = "https://releases.hashicorp.com/vault/1.2.3+ent/vault_1.2.3+ent_linux_amd64.zip"
-vault_ent_url = "https://s3-us-west-2.amazonaws.com/hc-enterprise-binaries/vault/ent/1.2.2/vault-enterprise_1.2.2%2Bent_linux_amd64.zip"
-cni_plugin_url = "https://github.com/containernetworking/plugins/releases/download/v0.8.2/cni-plugins-linux-amd64-v0.8.2.tgz"
+consul_url     = "https://releases.hashicorp.com/consul/1.9.3/consul_1.9.3_linux_amd64.zip"
+consul_ent_url = "https://releases.hashicorp.com/consul/1.9.3+ent/consul_1.9.3+ent_linux_amd64.zip"
+fabio_url      = "https://github.com/fabiolb/fabio/releases/download/v1.5.13/fabio-1.5.13-go1.13.4-linux_amd64"
+nomad_url      = "https://releases.hashicorp.com/nomad/1.0.3/nomad_1.0.3_linux_amd64.zip"
+nomad_ent_url  = "https://releases.hashicorp.com/nomad/1.0.3+ent/nomad_1.0.3+ent_linux_amd64.zip"
+vault_url      = "https://releases.hashicorp.com/vault/1.6.2/vault_1.6.2_linux_amd64.zip"
+vault_ent_url  = "https://releases.hashicorp.com/vault/1.6.2+ent/vault_1.6.2+ent_linux_amd64.zip"
+cni_plugin_url = "https://github.com/containernetworking/plugins/releases/download/v0.8.6/cni-plugins-linux-amd64-v0.8.6.tgz"
+#####################
+# TLS_ROOT
+#####################
+validity_period_hours  = "8760"
+organization           = "HashiCorp Emea Demostack"
+is_ca_certificate      = "true"
+ecdsa_curve            = "P521"
+common_name            = "service.consul"
+algorithm              = "ECDSA"
 #####################
 # TLS
 #####################
-ca_key_algorithm = ""
-ca_private_key_pem = ""
-ca_cert_pem = ""
-consul_gossip_key = ""
-consul_master_token = ""
+ca_key_algorithm      = ""
+ca_private_key_pem    = ""
+ca_cert_pem           = ""
+consul_gossip_key     = ""
+consul_master_token   = ""
 consul_join_tag_value = ""
-nomad_gossip_key = ""
+nomad_gossip_key      = ""
 #####################
-# TLS_Root
+#AWS
 #####################
-TFE_TLS_ROOT_WORKSPACE    = "tls-root-certificate"
-validity_period_hours = "8760"
-organization = "HashiCorp Emea Demostack"
-is_ca_certificate  = "true"
-ecdsa_curve = "P521"
-common_name = "service.consul"
-algorithm  = "ECDSA"
+primary_namespace    = "US-Guystack"
+secondary_namespace  = "EU-Guystack"
+tertiary_namespace   = "SA-Guystack"
+primary_region       = "eu-west-2"
+secondary_region     = "eu-west-3"
+tertiary_region      = "ap-northeast-1"
+instance_type_server = "t2.medium"
+instance_type_worker = "t2.medium"
+public_key           = "ssh-rsa AAAAB"
+zone_id              = "Z00497714WTTFND08E10"
+host_access_ip       = "152.250.108.29/32"
+AWS_ACCESS_KEY_ID    = ""
+AWS_SECRET_ACCESS_KEY= ""
+
+#####################
+#Azure
+#####################
+resource_group  = "Azure-Consul-Demo"
+demo_prefix     = "demostack"
+hostname        = "demostack"
+location        = "centralus"
+admin_username  = "admin"
+admin_password  = "replace-with-your-password"
+subscription_id = ""
+tenant_id       = ""
+client_id       = ""
+client_secret   = ""
+###################
+# GCP
+###################
+demostsack_gcp_project        = ""
+demostsack_gcp_region         = ""
+
+
 ###################
 # DNS
 ###################
-hosted-zone = "hashidemos.io"
-AWS_ACCESS_KEY_ID = "" 	
-AWS_SECRET_ACCESS_KEY = ""
-ARM_SUBSCRIPTION_ID = "" 	
-ARM_TENANT_ID = ""
-ARM_CLIENT_ID = ""
-ARM_CLIENT_SECRET = ""
-GOOGLE_CREDENTIALS = ""
-
+hosted-zone           = "hashidemos.io"
+ARM_SUBSCRIPTION_ID   = ""
+ARM_TENANT_ID         = ""
+ARM_CLIENT_ID         = ""
+ARM_CLIENT_SECRET     = ""
+namespace             = "Guy"
+created-by            = "terraform"
+create_aws_dns_zone   = "true"
+create_azure_dns_zone = "false"
+create_gcp_dns_zone   = "false"
+gcp_project       = "gb-playground"

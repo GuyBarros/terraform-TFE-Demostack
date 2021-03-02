@@ -8,3 +8,10 @@
 
 # .tfvars files
 *.tfvars
+
+# .temporary google creds json file 
+creds.json
+
+# .temporary terraform files
+*backend.hcl
+*.terraform.lock.hcl
