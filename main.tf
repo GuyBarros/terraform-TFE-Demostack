@@ -8,6 +8,7 @@ provider "tfe" {
 
 module "aws" {
   source               = "./modules/aws"
+  count   = var.CREATE_AWS ? 1 : 0
   TFE_AWS_DEMOSTACK_WORKSPACE = var.TFE_AWS_DEMOSTACK_WORKSPACE
   TFE_ORGANIZATION     = var.TFE_ORGANIZATION
   AWS_ACCESS_KEY_ID     = var.AWS_ACCESS_KEY_ID
@@ -45,6 +46,7 @@ module "aws" {
 
 module "azure" {
   source       = "./modules/azure"
+  count   = var.CREATE_AZURE ? 1 : 0
   TFE_AZURE_DEMOSTACK_WORKSPACE = var.TFE_AZURE_DEMOSTACK_WORKSPACE
   TFE_ORGANIZATION     = var.TFE_ORGANIZATION
   resource_group  = var.resource_group
@@ -80,6 +82,7 @@ module "azure" {
 
 module "gcp" {
   source             = "./modules/gcp"
+  count   = var.CREATE_GCP ? 1 : 0
   TFE_GCP_DEMOSTACK_WORKSPACE = var.TFE_GCP_DEMOSTACK_WORKSPACE
   TFE_ORGANIZATION     = var.TFE_ORGANIZATION
   gcp_region         = var.demostsack_gcp_region
@@ -107,7 +110,7 @@ module "gcp" {
 
 
 module "tls_root" {
-  count   = var.create_tls_root ? 1 : 0
+  count   = var.CREATE_TLS_ROOT ? 1 : 0
   source                 = "./modules/tls_root"
   TFE_TLS_ROOT_WORKSPACE = var.TFE_TLS_ROOT_WORKSPACE
   TFE_ORGANIZATION       = var.TFE_ORGANIZATION
@@ -122,7 +125,7 @@ module "tls_root" {
 
 module "dns" {
   source                = "./modules/dns"
-  # count   = var.create_dns ? 1 : 0
+   count   = var.CREATE_DNS ? 1 : 0
   TFE_DNS_WORKSPACE     = var.TFE_DNS_WORKSPACE
   TFE_ORGANIZATION      = var.TFE_ORGANIZATION
   hosted-zone           = var.hosted-zone
@@ -141,25 +144,3 @@ module "dns" {
   create_gcp_dns_zone   = var.create_gcp_dns_zone
   gcp_project           = var.dns_gcp_project
  }
-////////////// WIP
-/*
- resource "tfe_run_trigger" "DNS_TLS" {
-  workspace_id  = tfe_workspace.test-workspace.id
-  sourceable_id = tfe_workspace.test-sourceable.id
-}
-
-resource "tfe_run_trigger" "TLS_AWS_DEMOSTACK" {
-  workspace_id  = tfe_workspace.test-workspace.id
-  sourceable_id = tfe_workspace.test-sourceable.id
-}
-
-resource "tfe_run_trigger" "TLS_AZURE_DEMOSTACK" {
-  workspace_id  = tfe_workspace.test-workspace.id
-  sourceable_id = tfe_workspace.test-sourceable.id
-}
-
-resource "tfe_run_trigger" "TLS_GCP_DEMOSTACK" {
-  workspace_id  = tfe_workspace.test-workspace.id
-  sourceable_id = tfe_workspace.test-sourceable.id
-}
-*/

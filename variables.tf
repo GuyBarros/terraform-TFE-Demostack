@@ -1,12 +1,31 @@
 #####################
 #Control Vars
 #####################
-variable "create_tls_root" {
-  description = "do you want to create the TLS root workspace and TF project"
+variable "CREATE_TLS_ROOT" {
+  description = "do you want to create the TLS root workspace"
   type        = bool
-  default     = "true"
 }
 
+variable "CREATE_DNS" {
+  description = "do you want to create the Multi cloud DNS workspace"
+  type        = bool
+}
+
+
+variable "CREATE_GCP" {
+  description = "do you want to create the GCP Demostack workspace"
+  type        = bool
+}
+
+variable "CREATE_AZURE" {
+  description = "do you want to create the Azure Demostack workspace"
+  type        = bool
+}
+
+variable "CREATE_AWS" {
+  description = "do you want to create the AWS Demostack workspace"
+  type        = bool
+}
 
 
 #####################
@@ -316,7 +335,7 @@ variable "nomad_gossip_key" {
 }
 
 ##################################
-## TLS Root 
+## TLS Root
 #################################
 variable "TFE_TLS_ROOT_WORKSPACE" {
   description = "The TFE workspace  to create the variables"
@@ -359,7 +378,7 @@ variable "algorithm" {
 
 
 ##################################
-## DNS 
+## DNS
 #################################
 variable "TFE_DNS_WORKSPACE" {
   description = "The TFE workspace  to create the variables"
