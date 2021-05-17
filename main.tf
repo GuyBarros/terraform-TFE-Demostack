@@ -120,7 +120,6 @@ module "tls_root" {
   ecdsa_curve            = var.ecdsa_curve
   common_name            = var.common_name
   algorithm              = var.algorithm
-  global_remote_state      = true
 }
 
 
@@ -144,5 +143,4 @@ module "dns" {
   create_azure_dns_zone = var.create_azure_dns_zone
   create_gcp_dns_zone   = var.create_gcp_dns_zone
   gcp_project           = var.dns_gcp_project
-  global_remote_state      = true
  }

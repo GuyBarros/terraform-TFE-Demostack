@@ -1,6 +1,6 @@
 all: deploy_all
 .PHONY: all doormat_creds doormat_aws deploy destroy console
-CREATE_TLS = true
+CREATE_TLS = false
 CREATE_DNS = true
 CREATE_AWS = true
 CREATE_GCP = false
@@ -11,7 +11,7 @@ WORKSPACE_DNS = Guy-DNS-Zone
 WORKSPACE_AWS_DEMOSTACK = Guy-AWS-Demostack
 WORKSPACE_AZURE_DEMOSTACK = Guy-AZURE-Demostack
 WORKSPACE_GCP_DEMOSTACK = Guy-GCP-Demostack
-NAMESPACE = Demo
+NAMESPACE = Demotfe
 PRIMARY_STACK = "EU-Demostack"
 PRIMARY_AWS_REGION = "eu-west-2"
 OWNER = GuyBarros
@@ -85,7 +85,7 @@ deploy_aws_demostack: doormat_creds
 	doormat aws --account se_demos_dev \
 	--tf-push --tf-organization $(TFC_ORG) \
 	--tf-workspace $(WORKSPACE_AWS_DEMOSTACK)
-	./scripts/config_and_run_tf.sh "AWS_DEMOSTACK" $(TFC_ORG) $(WORKSPACE_AWS_DEMOSTACK)
+	./scripts/config_and_run_tf.sh "AWS_DEMOSTACK" $(TFC_ORG) $(WORKSPACE_AWS_DEMOSTACK) $(WORKSPACE_DNS)  $(WORKSPACE_TLS)
 destroy_aws_demostack: doormat_creds
 	doormat aws --account se_demos_dev \
 	--tf-push --tf-organization $(TFC_ORG) \
