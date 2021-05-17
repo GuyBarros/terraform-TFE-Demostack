@@ -2,6 +2,7 @@
 resource "tfe_workspace" "TLS_ROOT" {
   name         = var.TFE_TLS_ROOT_WORKSPACE
   organization = var.TFE_ORGANIZATION
+  global_remote_state      = true
   }
 
 

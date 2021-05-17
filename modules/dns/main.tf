@@ -2,6 +2,7 @@
 resource "tfe_workspace" "DNS" {
   name         = var.TFE_DNS_WORKSPACE
   organization = var.TFE_ORGANIZATION
+  global_remote_state      = true
   }
 
 
