@@ -1,6 +1,6 @@
 all: deploy_all
 .PHONY: all doormat_creds doormat_aws deploy destroy console
-CREATE_TLS = false
+CREATE_TLS = true
 CREATE_DNS = true
 CREATE_AWS = true
 CREATE_GCP = false
@@ -11,7 +11,11 @@ WORKSPACE_DNS = Guy-DNS-Zone
 WORKSPACE_AWS_DEMOSTACK = Guy-AWS-Demostack
 WORKSPACE_AZURE_DEMOSTACK = Guy-AZURE-Demostack
 WORKSPACE_GCP_DEMOSTACK = Guy-GCP-Demostack
-GOOGLE_CREDENTIALS_JSON_FILE_PATH = ""
+NAMESPACE = Demo
+PRIMARY_STACK = "EU-Demostack"
+PRIMARY_AWS_REGION = "eu-west-2"
+OWNER = GuyBarros
+# GOOGLE_CREDENTIALS_JSON_FILE_PATH = ""
 check_creds = $(shell doormat --smoke-test 1>&2 2>/dev/null; echo $$?)
 doormat_creds:
 ifneq ($(check_creds), 0)
@@ -28,20 +32,39 @@ dns: doormat_creds
 deploy_tfc: doormat_aws
 	terraform init -upgrade && \
 	terraform apply \
-	-var="TFE_ORGANIZATION=GuyBarros" \
-	-var="TFE_AWS_DEMOSTACK_WORKSPACE=Guy-AWS-Demostack" \
-	-var="TFE_AZURE_DEMOSTACK_WORKSPACE=Guy-AZURE-Demostack" \
-	-var="TFE_GCP_DEMOSTACK_WORKSPACE=Guy-GCP-Demostack" \
-	-var="TFE_TLS_ROOT_WORKSPACE=tls-root-certificate" \
-	-var="TFE_DNS_WORKSPACE=Guy-DNS-Zone" \
-	-var="CREATE_AWS=CREATE_AWS" \
-	-var="CREATE_GCP=CREATE_GCP" \
-	-var="CREATE_AZURE=CREATE_AZURE" \
-	-var="CREATE_TLS=CREATE_TLS" \
-	-var="CREATE_DNS" \
-	-var="GOOGLE_CREDENTIALS=(jq -c . ${GOOGLE_APPLICATION_CREDENTIALS} | sed 's/\\n/\\\\n/g' | sed 's/"/\\"/g')"
+	-var="TFE_ORGANIZATION=$(TFC_ORG)" \
+	-var="TFE_AWS_DEMOSTACK_WORKSPACE=$(WORKSPACE_AWS_DEMOSTACK)" \
+	-var="TFE_AZURE_DEMOSTACK_WORKSPACE=$(WORKSPACE_AZURE_DEMOSTACK)" \
+	-var="TFE_GCP_DEMOSTACK_WORKSPACE=$(WORKSPACE_GCP_DEMOSTACK)" \
+	-var="TFE_TLS_ROOT_WORKSPACE=$(WORKSPACE_TLS)" \
+	-var="TFE_DNS_WORKSPACE=$(WORKSPACE_DNS)" \
+	-var="CREATE_AWS=$(CREATE_AWS)" \
+	-var="CREATE_GCP=$(CREATE_GCP)" \
+	-var="CREATE_AZURE=$(CREATE_AZURE)" \
+	-var="CREATE_TLS_ROOT=$(CREATE_TLS)" \
+	-var="CREATE_DNS=$(CREATE_DNS)"  \
+	-var="owner=$(OWNER)" \
+	-var="primary_namespace=$(PRIMARY_STACK)" \
+	-var="primary_region=$(PRIMARY_AWS_REGION)" \
+	-var="namespace=$(NAMESPACE)"
+#	-var="GOOGLE_CREDENTIALS=(jq -c . ${GOOGLE_APPLICATION_CREDENTIALS} | sed 's/\\n/\\\\n/g' | sed 's/"/\\"/g')"
 destroy_tfc: doormat_aws
 	terraform init -upgrade && terraform destroy -auto-approve
+	-var="TFE_ORGANIZATION=$(TFC_ORG)" \
+	-var="TFE_AWS_DEMOSTACK_WORKSPACE=$(WORKSPACE_AWS_DEMOSTACK)" \
+	-var="TFE_AZURE_DEMOSTACK_WORKSPACE=$(WORKSPACE_AZURE_DEMOSTACK)" \
+	-var="TFE_GCP_DEMOSTACK_WORKSPACE=$(WORKSPACE_GCP_DEMOSTACK)" \
+	-var="TFE_TLS_ROOT_WORKSPACE=$(WORKSPACE_TLS)" \
+	-var="TFE_DNS_WORKSPACE=$(WORKSPACE_DNS)" \
+	-var="CREATE_AWS=$(CREATE_AWS)" \
+	-var="CREATE_GCP=$(CREATE_GCP)" \
+	-var="CREATE_AZURE=$(CREATE_AZURE)" \
+	-var="CREATE_TLS_ROOT=$(CREATE_TLS)" \
+	-var="CREATE_DNS=$(CREATE_DNS)"  \
+	-var="owner=$(OWNER)" \
+	-var="primary_namespace=$(PRIMARY_STACK)" \
+	-var="primary_region=$(PRIMARY_AWS_REGION)" \
+	-var="namespace=$(NAMESPACE)"
 console: doormat_creds
 	doormat aws --account se_demos_dev --console
 deploy_dns: doormat_creds
